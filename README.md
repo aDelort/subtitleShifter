@@ -1,6 +1,6 @@
 # Subtitle shifter
 
-Allows to shift each subtitle or a .srt or .txt file (the VLC's shifter is bugged !)
+Allows to shift each subtitle of a .srt or .txt file (the VLC's shifter is bugged !)
 
 Put the file in the root dir (subtitleShifter/)
 Open subtitleShifter.py with a text editor
