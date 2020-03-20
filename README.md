@@ -1,9 +1,8 @@
-# Subtitle corrector
+# Subtitle shifter
 
-Allows to shift each subtitle of a .srt or .txt file (the VLC's corrector is bugged !)
+Allows to shift each subtitle or a .srt or .txt file (the VLC's shifter is bugged !)
 
-Put the file in the root dir (subtitleCorrector/)
-Open subtitleCorrector.py with a text editor
+Put the file in the root dir (subtitleShifter/)
+Open subtitleShifter.py with a text editor
 Change the initialization of the shiftTime variable
 Run the script with Python3
-Your new file is in the root dir
