@@ -4,41 +4,44 @@ from os import listdir
 
 ## The subtitles of each file in the current folder will be translated of shiftTime
 
-shiftTime = Instant(-53,-500) #Time with the imported class Instant : Instant(hours,minutes,seconds,milli-seconds), might be negative
+shiftTime = Instant(0,0,0,0) #Time with the imported class Instant : Instant(hours,minutes,seconds,milli-seconds), might be negative
 
 
 ## Processing
 everyFile = listdir('./')
 fileList = []
-for f in everyFile:
-	if f[-4:] in ['.txt', '.srt']:
-		fileList.append(f)
-for f in fileList:
-	f2 = open('correction_'+f,'w')
+for file in everyFile:
+	if file[-4:] in ['.txt', '.srt']:
+		fileList.append(file)
+for file in fileList:
 	print(100*'*')
-	print(f)
-	content = open(f,"r").read()
+	print(file)
+	print("Subtitles shifted of {}".format(shiftTime))
+	content = open(file,"r").read()
 	repliesList = content.split("\n\n")
+	new_file = open(file,'w')
 	for reply in repliesList:
 		try:
 			subBlock = reply.split("\n")
 			while subBlock and subBlock[0] == '':
 				del subBlock[0]
 			if subBlock:
-				f2.write(subBlock[0]+'\n')
-
+				# print(subBlock)
+				new_file.write(subBlock[0]+'\n')
 				subTimes = subBlock[1]
 				t1,t2 = subTimes.split(' --> ')
+				# print(t1,t2)
 				inst1,inst2 = Instant(0),Instant(0)
+				# print(subBlock[0],inst1,inst2)
 				inst1.setWithString(t1)
 				inst2.setWithString(t2)
-				f2.write(str(inst1 + shiftTime))
-				f2.write(' --> ')
-				f2.write(str(inst2 + shiftTime))
-				f2.write('\n')
+				new_file.write(str(inst1 + shiftTime))
+				new_file.write(' --> ')
+				new_file.write(str(inst2 + shiftTime))
+				new_file.write('\n')
 
 				for line in subBlock[2:]:
-					f2.write(line+'\n')
-				f2.write('\n')
+					new_file.write(line+'\n')
+				new_file.write('\n')
 		except:
 			pass

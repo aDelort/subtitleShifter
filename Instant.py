@@ -38,11 +38,15 @@ class Instant(object):
 		self._hours %= 100
 
 	def setWithString(self,str):
+		if str[0] == '-':
+			str = str[1:]
+			self._positive = False
+		else:
+			self._positive = True
 		self._hours = int(str[0:2])
 		self._minutes = int(str[3:5])
 		self._seconds = int(str[6:8])
 		self._milliSeconds = int(str[9:12])
-		self._positive = True
 
 	def strWithForcedZeros(self,n,digits):
 		#Return 0003 instead of 3 with digits=4 (n=3)
